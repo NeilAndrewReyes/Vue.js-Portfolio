@@ -1,0 +1,18 @@
+:root {
+  --bg-dark: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --text-primary: #f1f1f1;
+  --text-secondary: #aaaaaa;
+  --accent: #3fa9f5;
+  --border-radius: 12px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  --transition: 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+}
