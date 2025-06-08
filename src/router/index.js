@@ -23,7 +23,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isLoggedIn = !!localStorage.getItem('user');
 
-  if (to.path !== '/login' && !isLoggedIn) {
+  if (to.meta.requiresAuth && !isLoggedIn) {
     next('/login');
   } else if (to.path === '/login' && isLoggedIn) {
     next('/portfolio/profile');
