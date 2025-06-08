@@ -23,6 +23,7 @@ export default {
   methods: {
     login() {
       if (this.username === 'admin' && this.password === 'admin') {
+        localStorage.setItem('user', this.username);
         this.$router.push('/portfolio/profile');
       } else {
         this.error = 'Incorrect username or password';
