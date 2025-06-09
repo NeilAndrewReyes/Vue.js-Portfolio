@@ -9,10 +9,7 @@
           <h1 class="name">Neil Andrew V. Reyes</h1>
           <h2 class="title">Computer Engineering Student</h2>
           <p class="bio">
-            I’m a passionate Computer Engineering student with a strong focus on front-end development and embedded
-            systems. I enjoy designing efficient software solutions and creating hardware projects such as Arduino-based
-            applications. Eager to learn and grow, I’m dedicated to building innovative technologies that bridge the gap
-            between software and hardware.
+            I’m a passionate Computer Engineering student with a strong focus on front-end development and embedded systems. I enjoy designing efficient software solutions and creating hardware projects such as Arduino-based applications. Eager to learn and grow, I’m dedicated to building innovative technologies that bridge the gap between software and hardware.
           </p>
         </div>
       </div>
@@ -54,8 +51,8 @@
           <li>Email: <a href="mailto:neilreyes1919@gmail.com">neilreyes1919@gmail.com</a></li>
           <li>LinkedIn: <a href="https://linkedin.com/in/neilandrewvictorinoreyes" target="_blank"
               rel="noopener">neilandrewvictorinoreyes</a></li>
-          <li>GitHub: <a href="https://github.com/NeilAndrewReyes" target="_blank" rel="noopener">NeilAndrewReyes</a>
-          </li>
+          <li>GitHub: <a href="https://github.com/NeilAndrewReyes" target="_blank"
+              rel="noopener">NeilAndrewReyes</a></li>
         </ul>
       </div>
     </div>
@@ -306,62 +303,4 @@ export default {
   }
 }
 
-/* Below existing media query (max-width: 720px), add these: */
-
-@media (max-width: 540px) {
-  .profile-container {
-    padding: 1.5rem 1.2rem;
-  }
-
-  .name {
-    font-size: 1.8rem;
-  }
-
-  .title {
-    font-size: 1.1rem;
-  }
-
-  .bio {
-    font-size: 0.95rem;
-  }
-
-  .category ul li {
-    font-size: 0.85rem;
-    padding: 0.25rem 0.75rem;
-  }
-
-  .contact-section ul {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .contact-section ul li {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .profile-photo {
-    width: 120px;
-    height: 120px;
-  }
-
-  .skills-section h3,
-  .contact-section h3 {
-    font-size: 1.1rem;
-  }
-
-  .category h4 {
-    font-size: 1rem;
-  }
-
-  .category ul li {
-    font-size: 0.8rem;
-  }
-
-  .contact-section ul li {
-    font-size: 0.9rem;
-  }
-}
 </style>

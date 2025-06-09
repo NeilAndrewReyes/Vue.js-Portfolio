@@ -10,7 +10,12 @@
       </p>
       <button v-if="!started" @click="startGame">Start Game</button>
 
-      <div v-if="started" class="circle" :style="{ top: y + 'px', left: x + 'px' }" @click="handleClick"></div>
+      <div
+        v-if="started"
+        class="circle"
+        :style="{ top: y + 'px', left: x + 'px' }"
+        @click="handleClick"
+      ></div>
 
       <div v-if="gameOver" class="result">
         <h3>Game Over!</h3>
@@ -52,20 +57,14 @@ export default {
     },
     moveCircle() {
       this.interval = setInterval(() => {
-        const circleSize = 80; // default
-        const maxX = window.innerWidth - circleSize;
-        const maxY = window.innerHeight - circleSize - 100;
-        this.x = Math.floor(Math.random() * maxX);
-        this.y = Math.floor(Math.random() * maxY);
+        this.x = Math.floor(Math.random() * (window.innerWidth - 100));
+        this.y = Math.floor(Math.random() * (window.innerHeight - 200));
       }, 700);
     },
     handleClick() {
       this.score++;
-      const circleSize = 80;
-      const maxX = window.innerWidth - circleSize;
-      const maxY = window.innerHeight - circleSize - 100;
-      this.x = Math.floor(Math.random() * maxX);
-      this.y = Math.floor(Math.random() * maxY);
+      this.x = Math.floor(Math.random() * (window.innerWidth - 100));
+      this.y = Math.floor(Math.random() * (window.innerHeight - 200));
     },
     endGame() {
       clearInterval(this.interval);
@@ -201,3 +200,5 @@ button:hover {
   }
 }
 </style>
+
+
