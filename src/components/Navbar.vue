@@ -8,7 +8,7 @@
       <span :class="{ open: menuOpen }"></span>
     </div>
 
-    <ul :class="['nav-links', { 'active': menuOpen }]">
+    <ul class="['nav-links', { 'active': menuOpen }]">
       <li><router-link to="/portfolio/profile" class="nav-item" :class="{ 'active-link': isActive('/portfolio/profile') }">Profile</router-link></li>
       <li><router-link to="/portfolio/showcase" class="nav-item" :class="{ 'active-link': isActive('/portfolio/showcase') }">Showcase</router-link></li>
       <li><router-link to="/portfolio/contact" class="nav-item" :class="{ 'active-link': isActive('/portfolio/contact') }">Contact</router-link></li>
