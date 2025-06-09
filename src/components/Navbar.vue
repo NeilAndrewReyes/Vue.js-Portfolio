@@ -1,23 +1,15 @@
 <template>
   <nav class="navbar">
-    <div class="logo">MyPortfolio</div>
-
-    <div class="hamburger" @click="toggleMenu">
-      <span :class="{ open: menuOpen }"></span>
-      <span :class="{ open: menuOpen }"></span>
-      <span :class="{ open: menuOpen }"></span>
-    </div>
-
-    <ul class="['nav-links', { 'active': menuOpen }]">
-      <li><router-link to="/portfolio/profile" class="nav-item" :class="{ 'active-link': isActive('/portfolio/profile') }">Profile</router-link></li>
-      <li><router-link to="/portfolio/showcase" class="nav-item" :class="{ 'active-link': isActive('/portfolio/showcase') }">Showcase</router-link></li>
-      <li><router-link to="/portfolio/contact" class="nav-item" :class="{ 'active-link': isActive('/portfolio/contact') }">Contact</router-link></li>
-      <li><router-link to="/portfolio/creative" class="nav-item" :class="{ 'active-link': isActive('/portfolio/creative') }">Creative</router-link></li>
-      <li><button class="logout-button" @click="logout">Logout</button></li>
-    </ul>
+    <div class="logo">N.A.V.R</div>
+    <ul class="nav-links">
+  <li><router-link to="/portfolio/profile" class="nav-item" exact-active-class="active-link">Profile</router-link></li>
+  <li><router-link to="/portfolio/showcase" class="nav-item" exact-active-class="active-link">Showcase</router-link></li>
+  <li><router-link to="/portfolio/contact" class="nav-item" exact-active-class="active-link">Contact</router-link></li>
+  <li><router-link to="/portfolio/creative" class="nav-item" exact-active-class="active-link">Creative</router-link></li>
+</ul>
+    <button class="logout-button" @click="logout">Logout</button>
   </nav>
 </template>
-
 
 <script>
 export default {
@@ -32,6 +24,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 
 .navbar {
   position: sticky;
@@ -59,7 +52,6 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
-  transition: max-height 0.3s ease-in-out;
 }
 
 .nav-links a {
@@ -126,6 +118,7 @@ export default {
   }
 }
 
+
 .logout-button {
   background-color: #4f46e5;
   border: none;
@@ -139,58 +132,5 @@ export default {
 
 .logout-button:hover {
   background-color: #3730a3;
-}
-
-/* Hamburger Menu */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: white;
-  transition: 0.3s ease;
-}
-
-.hamburger span.open:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.hamburger span.open:nth-child(2) {
-  opacity: 0;
-}
-.hamburger span.open:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Responsive Rules */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: #1a1a1a;
-    flex-direction: column;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-  }
-
-  .nav-links.active {
-    max-height: 300px;
-    padding: 1rem 0;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links li {
-    text-align: center;
-    padding: 0.5rem 0;
-  }
 }
 </style>
