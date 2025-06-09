@@ -1,9 +1,20 @@
+// router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../pages/Login.vue';
 import Profile from '../pages/Profile.vue';
 import Showcase from '../pages/Showcase.vue';
 import Contact from '../pages/Contact.vue';
 import Creative from '../pages/Creative.vue';
+
+let isAuthenticated = false;
+
+export function setAuthenticated(value) {
+  isAuthenticated = value;
+}
+
+export function logout() {
+  isAuthenticated = false;
+}
 
 const routes = [
   { path: '/login', component: Login },
@@ -15,20 +26,18 @@ const routes = [
 ];
 
 const router = createRouter({
-  // ADD your repo folder as the base here:
   history: createWebHistory('/Vue.js-Portfolio/'),
   routes
 });
 
 router.beforeEach((to, from, next) => {
-  const isLoggedIn = !!localStorage.getItem('user');
-
-  if (to.meta.requiresAuth && !isLoggedIn) {
+  if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login');
-  } else if (to.path === '/login' && isLoggedIn) {
+  } else if (to.path === '/login' && isAuthenticated) {
     next('/portfolio/profile');
   } else {
     next();
   }
 });
+
 export default router;

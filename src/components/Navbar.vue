@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { logout } from '../router'; // Adjust path if needed
+
 export default {
   data() {
     return {
@@ -40,8 +42,8 @@ export default {
       this.menuOpen = !this.menuOpen;
     },
     logout() {
-      localStorage.removeItem('user');
-      this.$router.push('/login');
+      logout(); // resets isAuthenticated to false
+      this.$router.push('/login'); // redirects to login page
     },
   },
 };
@@ -179,14 +181,14 @@ export default {
   border: none;
   padding: 0.6rem 1.2rem;
   color: white;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background 0.3s;
-
-  font-size: 1rem;
-  font-weight: 500;
 }
+
 
 .logout-button:hover {
   background-color: #3730a3;

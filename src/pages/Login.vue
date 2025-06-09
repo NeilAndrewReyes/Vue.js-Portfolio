@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { setAuthenticated } from '../router';
+
 export default {
   data() {
     return {
@@ -23,14 +25,16 @@ export default {
   methods: {
     login() {
       if (this.username === 'admin' && this.password === 'admin') {
-        localStorage.setItem('user', 'admin');
+        // Set in-memory auth state
+        setAuthenticated(true);
+        // Redirect to profile
         this.$router.push('/portfolio/profile');
       } else {
         this.error = 'Incorrect username or password';
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -67,6 +71,19 @@ html {
   font-weight: 600;
   margin: 0;
   text-align: center;
+}
+
+.login-box button {
+  padding: 0.75rem;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 .subtitle {
