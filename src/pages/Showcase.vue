@@ -139,4 +139,38 @@ export default {
   border-bottom-color: #7c68ff;
 }
 
+@media (max-width: 720px) {
+  .showcase-section {
+    padding: 0rem 1rem 3rem;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+    max-width: 100%;
+  }
+
+  .projects-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-card {
+    border-radius: 1rem;
+  }
+
+  .project-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .project-info p {
+    font-size: 0.9rem;
+  }
+}
+
 </style>

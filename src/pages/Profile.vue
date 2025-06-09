@@ -303,4 +303,55 @@ export default {
   }
 }
 
+@media (max-width: 720px) {
+  .top-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-info {
+    width: 100%;
+  }
+
+  .skills-categories {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 400px) {
+  .category ul {
+    justify-content: center;
+  }
+
+  .contact-section ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-section ul li {
+    flex: none;
+    width: 100%;
+  }
+}
+
+.bio {
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+@media (max-width: 360px) {
+  .profile-container {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
 </style>

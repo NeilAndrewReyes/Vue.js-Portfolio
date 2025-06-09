@@ -1,30 +1,54 @@
 <template>
   <nav class="navbar">
     <div class="logo">N.A.V.R</div>
-    <ul class="nav-links">
-  <li><router-link to="/portfolio/profile" class="nav-item" exact-active-class="active-link">Profile</router-link></li>
-  <li><router-link to="/portfolio/showcase" class="nav-item" exact-active-class="active-link">Showcase</router-link></li>
-  <li><router-link to="/portfolio/contact" class="nav-item" exact-active-class="active-link">Contact</router-link></li>
-  <li><router-link to="/portfolio/creative" class="nav-item" exact-active-class="active-link">Creative</router-link></li>
-</ul>
-    <button class="logout-button" @click="logout">Logout</button>
+
+    <div class="hamburger" @click="toggleMenu">
+      <span :class="{ open: menuOpen }"></span>
+      <span :class="{ open: menuOpen }"></span>
+      <span :class="{ open: menuOpen }"></span>
+    </div>
+
+    <div class="nav-group" :class="{ active: menuOpen }">
+      <ul class="nav-links">
+        <li>
+          <router-link to="/portfolio/profile" class="nav-item" exact-active-class="active-link">Profile</router-link>
+        </li>
+        <li>
+          <router-link to="/portfolio/showcase" class="nav-item" exact-active-class="active-link">Showcase</router-link>
+        </li>
+        <li>
+          <router-link to="/portfolio/contact" class="nav-item" exact-active-class="active-link">Contact</router-link>
+        </li>
+        <li>
+          <router-link to="/portfolio/creative" class="nav-item" exact-active-class="active-link">Creative</router-link>
+        </li>
+      </ul>
+      <button class="logout-button" @click="logout">Logout</button>
+    </div>
   </nav>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      menuOpen: false,
+    };
+  },
   methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    },
     logout() {
       localStorage.removeItem('user');
       this.$router.push('/login');
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
 
 .navbar {
   position: sticky;
@@ -32,6 +56,7 @@ export default {
   background-color: #1a1a1a;
   padding: 1rem 2rem;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,9 +68,41 @@ export default {
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #ffffff;
+  flex-shrink: 0;
 }
 
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: 0.3s;
+}
+
+.hamburger span.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger span.open:nth-child(2) {
+  opacity: 0;
+}
+.hamburger span.open:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Nav links */
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -67,7 +124,6 @@ export default {
 
 .nav-item {
   position: relative;
-  color: #cccccc;
   font-weight: 500;
   font-size: 1rem;
   text-decoration: none;
@@ -118,7 +174,6 @@ export default {
   }
 }
 
-
 .logout-button {
   background-color: #4f46e5;
   border: none;
@@ -128,9 +183,53 @@ export default {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background 0.3s;
+
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .logout-button:hover {
   background-color: #3730a3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-group {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #1a1a1a;
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    gap: 0;
+  }
+
+  .nav-group.active {
+    max-height: 400px;
+    padding: 1rem 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .nav-links li {
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  .logout-button {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
 }
 </style>

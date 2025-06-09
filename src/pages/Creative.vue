@@ -1,6 +1,6 @@
 <template>
-  <section class="creative-section">
-    <div class="card">
+  <section class="creative-section" ref="container">
+    <div class="card" ref="card">
       <h2 class="section-title">🎯 Click the Circle Game</h2>
       <p v-if="!started" class="instructions">
         Click the circle as many times as you can in 30 seconds!
@@ -32,20 +32,45 @@ export default {
     return {
       score: 0,
       timeLeft: 30,
-      x: 100,
-      y: 100,
+      x: 0,
+      y: 0,
       started: false,
       gameOver: false,
       interval: null,
       timer: null,
+      circleSize: 80,
+      cardWidth: 0,
+      cardHeight: 0,
     };
   },
+  mounted() {
+    this.updateCardSize();
+    window.addEventListener('resize', this.updateCardSize);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
+    clearInterval(this.timer);
+    window.removeEventListener('resize', this.updateCardSize);
+  },
   methods: {
+    updateCardSize() {
+      this.$nextTick(() => {
+        const card = this.$refs.card;
+        if (card) {
+          this.cardWidth = card.clientWidth;
+          this.cardHeight = card.clientHeight;
+          // Set initial position of circle inside card boundaries
+          this.x = Math.floor(Math.random() * (this.cardWidth - this.circleSize));
+          this.y = Math.floor(Math.random() * (this.cardHeight - this.circleSize - 100)) + 100; // avoid overlapping title
+        }
+      });
+    },
     startGame() {
       this.score = 0;
       this.timeLeft = 30;
       this.started = true;
       this.gameOver = false;
+      this.updateCardSize();
       this.moveCircle();
       this.timer = setInterval(() => {
         this.timeLeft--;
@@ -57,24 +82,20 @@ export default {
     },
     moveCircle() {
       this.interval = setInterval(() => {
-        this.x = Math.floor(Math.random() * (window.innerWidth - 100));
-        this.y = Math.floor(Math.random() * (window.innerHeight - 200));
+        this.x = Math.floor(Math.random() * (this.cardWidth - this.circleSize));
+        this.y = Math.floor(Math.random() * (this.cardHeight - this.circleSize - 100)) + 100; // to avoid overlap with heading & controls
       }, 700);
     },
     handleClick() {
       this.score++;
-      this.x = Math.floor(Math.random() * (window.innerWidth - 100));
-      this.y = Math.floor(Math.random() * (window.innerHeight - 200));
+      this.x = Math.floor(Math.random() * (this.cardWidth - this.circleSize));
+      this.y = Math.floor(Math.random() * (this.cardHeight - this.circleSize - 100)) + 100;
     },
     endGame() {
       clearInterval(this.interval);
       this.started = false;
       this.gameOver = true;
     },
-  },
-  beforeUnmount() {
-    clearInterval(this.interval);
-    clearInterval(this.timer);
   }
 };
 </script>
@@ -96,6 +117,7 @@ export default {
 }
 
 .card {
+  position: relative;
   background: #1a1a1a;
   padding: 2rem;
   border-radius: 1.5rem;
@@ -103,6 +125,7 @@ export default {
   max-width: 700px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   text-align: center;
+  user-select: none;
 }
 
 .section-title {
@@ -200,5 +223,3 @@ button:hover {
   }
 }
 </style>
-
-
