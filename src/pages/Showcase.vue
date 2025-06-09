@@ -138,4 +138,46 @@ export default {
   color: #7c68ff;
   border-bottom-color: #7c68ff;
 }
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.6rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .project-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .project-info p {
+    font-size: 0.9rem;
+  }
+
+  .project-card {
+    border-radius: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .project-info {
+    padding: 0.8rem 1rem 1.2rem;
+  }
+
+  .project-info p {
+    font-size: 0.85rem;
+  }
+
+  .project-link {
+    font-size: 0.9rem;
+  }
+
+  .projects-grid {
+    gap: 1.5rem;
+  }
+}
+
 </style>

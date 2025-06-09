@@ -23,7 +23,7 @@ export default {
   methods: {
     login() {
       if (this.username === 'admin' && this.password === 'admin') {
-        localStorage.setItem('user', 'admin');  // ✅ Store login state
+        localStorage.setItem('user', 'admin');
         this.$router.push('/portfolio/profile');
       } else {
         this.error = 'Incorrect username or password';
@@ -41,12 +41,13 @@ html {
 }
 
 .login-container {
-  height: 100vh;
+  min-height: 100vh;
   background: #0f0f0f;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Inter', sans-serif;
+  padding: 1rem;
 }
 
 .login-box {
@@ -60,6 +61,7 @@ html {
   flex-direction: column;
   gap: 1.2rem;
   color: #ffffff;
+  transition: all 0.3s ease;
 }
 
 .login-box h1 {
@@ -111,5 +113,36 @@ html {
   color: #ff5c5c;
   font-size: 0.9rem;
   margin-top: -0.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    padding: 2rem;
+    max-width: 100%;
+  }
+
+  .login-box h1 {
+    font-size: 1.5rem;
+  }
+
+  .login-box input,
+  .login-box button {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    padding: 1.5rem;
+  }
+
+  .login-box h1 {
+    font-size: 1.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
 }
 </style>

@@ -10,12 +10,7 @@
       </p>
       <button v-if="!started" @click="startGame">Start Game</button>
 
-      <div
-        v-if="started"
-        class="circle"
-        :style="{ top: y + 'px', left: x + 'px' }"
-        @click="handleClick"
-      ></div>
+      <div v-if="started" class="circle" :style="{ top: y + 'px', left: x + 'px' }" @click="handleClick"></div>
 
       <div v-if="gameOver" class="result">
         <h3>Game Over!</h3>
@@ -57,14 +52,20 @@ export default {
     },
     moveCircle() {
       this.interval = setInterval(() => {
-        this.x = Math.floor(Math.random() * (window.innerWidth - 100));
-        this.y = Math.floor(Math.random() * (window.innerHeight - 200));
+        const circleSize = 80; // default
+        const maxX = window.innerWidth - circleSize;
+        const maxY = window.innerHeight - circleSize - 100;
+        this.x = Math.floor(Math.random() * maxX);
+        this.y = Math.floor(Math.random() * maxY);
       }, 700);
     },
     handleClick() {
       this.score++;
-      this.x = Math.floor(Math.random() * (window.innerWidth - 100));
-      this.y = Math.floor(Math.random() * (window.innerHeight - 200));
+      const circleSize = 80;
+      const maxX = window.innerWidth - circleSize;
+      const maxY = window.innerHeight - circleSize - 100;
+      this.x = Math.floor(Math.random() * maxX);
+      this.y = Math.floor(Math.random() * maxY);
     },
     endGame() {
       clearInterval(this.interval);
@@ -91,6 +92,8 @@ export default {
   background-color: #0d0d0d;
   color: #eee;
   font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
 .card {
@@ -100,6 +103,7 @@ export default {
   width: 100%;
   max-width: 700px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 .section-title {
@@ -109,14 +113,13 @@ export default {
   border-bottom: 2px solid #4f46e5;
   padding-bottom: 0.5rem;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
 }
 
-.instructions, .game-info {
+.instructions,
+.game-info {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
   font-weight: 400;
-  font-family: 'Inter', sans-serif;
 }
 
 button {
@@ -130,7 +133,6 @@ button {
   font-weight: 600;
   font-size: 1rem;
   transition: background 0.3s ease, transform 0.2s ease;
-  font-family: 'Inter', sans-serif;
 }
 
 button:hover {
@@ -152,7 +154,50 @@ button:hover {
 .result {
   margin-top: 2rem;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .instructions,
+  .game-info {
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .instructions,
+  .game-info {
+    font-size: 0.95rem;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+  }
 }
 </style>
-
